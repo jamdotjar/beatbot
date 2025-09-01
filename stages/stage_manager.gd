@@ -32,5 +32,5 @@ func _transition_to_scene(scene_path: String):
 	get_tree().change_scene_to_file(scene_path)
 
 
-func _on_level_end_body_entered(body: Node2D) -> void:
+func _on_level_end_body_entered(_body: Node2D) -> void:
 	pass # Replace with function body.

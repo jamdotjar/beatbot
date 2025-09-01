@@ -11,17 +11,13 @@ config_version=5
 [application]
 
 config/name="jumpstart"
-run/main_scene="res://stages/lv1.tscn"
+run/main_scene="uid://dveimi05t66f0"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0.148792, 0.253314, 1)
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://assets/icon.svg"
-
-[autoload]
-
-SceneManager="*res://addons/awesome_scene_manager/autoloads/SceneManager.tscn"
 
 [display]
 
@@ -33,7 +29,7 @@ window/vsync/vsync_mode=2
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/awesome_scene_manager/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [input]
 
@@ -69,3 +65,4 @@ swap={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

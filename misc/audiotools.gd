@@ -1,18 +1,17 @@
-extends AudioStreamPlayer2D
+extends AudioStreamPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 func get_stream_bpm():
 	var playlist = stream as AudioStreamPlaylist
 	if playlist:
-		var position = get_playback_position()
+		var pos = get_playback_position()
 		var cumulative_time = 0.0
 		
 		for i in range(playlist.get_stream_count()):
@@ -20,13 +19,13 @@ func get_stream_bpm():
 			
 			if _stream:
 				cumulative_time += _stream.get_length()
-				if position < cumulative_time:
+				if pos < cumulative_time:
 					return _stream.bpm
 
 func get_current_stream_name():
 	var playlist = stream as AudioStreamPlaylist
 	if playlist:
-		var position = get_playback_position()
+		var pos = get_playback_position()
 		var cumulative_time = 0.0
 		
 		for i in range(playlist.get_stream_count()):
@@ -34,7 +33,7 @@ func get_current_stream_name():
 			
 			if _stream:
 				cumulative_time += _stream.get_length()
-				if position < cumulative_time:
+				if pos < cumulative_time:
 					return _stream.resource_path
 
 	return "No stream playing"

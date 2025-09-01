@@ -21,12 +21,18 @@ var spawn: Node2D
 @export
 var death_screen: AnimatedSprite2D
 
+
 var speed_modifier = 1
 var accel_modifer = 1
 var spawn_point: Vector2
+@onready
+var anim = $AnimatedSprite2D
+
 func _ready():
 	spawn_point = spawn.global_position
 	add_to_group("player")
+	anim.play("idle")
+		
 
 func _physics_process(delta: float) -> void:
 	var gravity = get_gravity()
@@ -52,6 +58,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = lerp(velocity.x, 0.0, deceleration)
 
 	move_and_slide()
+	
+	if direction != 0:
+		anim.flip_h = direction < 0
+		if anim.animation != "mv":
+			anim.play("mv")
+	else:
+		if anim.animation != "idle":
+			anim.play("idle")
 
 func die():
 	print("die")
@@ -66,7 +80,7 @@ func respawn():
 	set_physics_process(true)
 	await death_screen.animation_finished
 
-func _on_hazard_entered(body: Node2D) -> void:
+func _on_hazard_entered(_body: Node2D) -> void:
 	die()
 
 func set_spawn(pos: Vector2):
